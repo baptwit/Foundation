@@ -1,6 +1,5 @@
 <?php
-//include LESSphp
-include "lessphp/lessc.inc.php";
+
 // Disable WordPress version reporting as a basic protection against attacks
 function remove_generators() {
 	return '';
@@ -32,7 +31,7 @@ if ( function_exists( 'register_nav_menus' ) ) {
 	register_nav_menus(
 		array(
 		  // - Header Navigation
-		  'header-menu' => 'Header Navigation',
+			'header-menu' => 'Header Navigation',
 		)
 	);
 }
@@ -44,23 +43,23 @@ if (function_exists('register_sidebar')) {
 	// Right Sidebar
 
 	register_sidebar(array(
-		'name'=> 'Right Sidebar',
-		'id' => 'right_sidebar',
+		'name'          => 'Right Sidebar',
+		'id'            => 'right_sidebar',
 		'before_widget' => '<li id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '<h4>',
-		'after_title' => '</h4>',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h4>',
+		'after_title'   => '</h4>',
 	));
 	
 	// Footer Sidebar
 	
 	register_sidebar(array(
-		'name'=> 'Footer Sidebar',
-		'id' => 'footer_sidebar',
+		'name'          => 'Footer Sidebar',
+		'id'            => 'footer_sidebar',
 		'before_widget' => '<div id="%1$s" class="four columns %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h4>',
-		'after_title' => '</h4>',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4>',
+		'after_title'   => '</h4>',
 	));
 }
 
@@ -85,11 +84,11 @@ function custom_comments($comment, $args, $depth) {
         <?php // echo the comment reply link
             if($args['type'] == 'all' || get_comment_type() == 'comment') :
                 comment_reply_link(array_merge($args, array(
-                    'reply_text' => __('Reply','Foundation'),
-                    'login_text' => __('Log in to reply.','Foundation'),
-                    'depth' => $depth,
-                    'before' => '<div class="comment-reply-link">',
-                    'after' => '</div>'
+					'reply_text' => __('Reply','Foundation'),
+					'login_text' => __('Log in to reply.','Foundation'),
+					'depth'      => $depth,
+					'before'     => '<div class="comment-reply-link">',
+					'after'      => '</div>'
                 )));
             endif;
         ?>
@@ -131,14 +130,14 @@ add_action('init', 'Orbit');
 
 function Orbit(){
 	$Orbit_args = array(
-		'label'	=> __('Orbit'),
-		'singular_label' =>	__('Orbit'),
-		'public'	=>	true,
-		'show_ui'	=>	true,
-		'capability_type'	=>	'post',
-		'hierarchical'	=>	false,
-		'rewrite'	=>	true,
-		'supports'	=>	array('title', 'editor','page-attributes','thumbnail')
+		'label'           => __('Orbit'),
+		'singular_label'  =>	__('Orbit'),
+		'public'          =>	true,
+		'show_ui'         =>	true,
+		'capability_type' =>	'post',
+		'hierarchical'    =>	false,
+		'rewrite'         =>	true,
+		'supports'        =>	array('title', 'editor','page-attributes','thumbnail')
 		);
 		register_post_type('Orbit', $Orbit_args);
 }
@@ -206,12 +205,12 @@ function SliderContent(){
  */
 function emm_paginate($args = null) {
 	$defaults = array(
-		'page' => null, 'pages' => null, 
-		'range' => 3, 'gap' => 3, 'anchor' => 1,
-		'before' => '<ul class="pagination">', 'after' => '</ul>',
-		'title' => __('<li class="unavailable"></li>'),
+		'page'     => null, 'pages' => null, 
+		'range'    => 3, 'gap' => 3, 'anchor' => 1,
+		'before'   => '<ul class="pagination">', 'after' => '</ul>',
+		'title'    => __('<li class="unavailable"></li>'),
 		'nextpage' => __('&raquo;'), 'previouspage' => __('&laquo'),
-		'echo' => 1
+		'echo'     => 1
 	);
 
 	$r = wp_parse_args($args, $defaults);
@@ -305,21 +304,5 @@ function emm_paginate_loop($start, $max, $page = 0) {
 	}
 	return $output;
 } 
-
-function auto_compile_less($less_fname, $css_fname) {
-  // load the cache
-  $cache_fname = $less_fname.".cache";
-  if (file_exists($cache_fname)) {
-    $cache = unserialize(file_get_contents($cache_fname));
-  } else {
-    $cache = $less_fname;
-  }
-
-  $new_cache = lessc::cexecute($cache);
-  if (!is_array($cache) || $new_cache['updated'] > $cache['updated']) {
-    file_put_contents($cache_fname, serialize($new_cache));
-    file_put_contents($css_fname, $new_cache['compiled']);
-  }
-}
 
 ?>
