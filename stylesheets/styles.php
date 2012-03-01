@@ -4,8 +4,7 @@ else ob_start();
 
 $files = array(  
     'app.less',
-    'foundation.less',
-    'ie.css'
+    'foundation.less'
   
 ); 
 
