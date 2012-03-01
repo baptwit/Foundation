@@ -14,7 +14,10 @@
 	<title><?php bloginfo('name'); ?> | <?php is_home() ? bloginfo('description') : wp_title(''); ?></title>
   
 	<!-- Included CSS Files -->
-	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>">
+	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/stylesheets/styles.php">
+	<!-- [if lt IE 9]>
+		<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/stylesheets/ie.css">
+	<![endif]-->
 	
 	<!-- IE Fix for HTML5 Tags -->
 	<!--[if lt IE 9]>
