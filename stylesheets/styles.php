@@ -2,9 +2,17 @@
 if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler");  
 else ob_start(); 
 
-$files = array(  
+$files = array( 
+    'config.less',
     'app.less',
-    'foundation.less'
+    'global.less',
+    'typography.less',
+    'grid.less',
+    'ui.less',
+    'forms.less',
+    'orbit.less',
+    'reveal.less',
+    'mobile.less'
   
 ); 
 
