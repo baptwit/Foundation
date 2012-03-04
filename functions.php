@@ -305,4 +305,8 @@ function emm_paginate_loop($start, $max, $page = 0) {
 	return $output;
 } 
 
+function stylesheet_uri_filter($stylesheet_uri, $stylesheet_dir_uri) {
+	return $stylesheet_dir_uri.'/stylesheets/styles.php';
+}
+add_filter('stylesheet_uri', 'stylesheet_uri_filter', 10, 2);
 ?>
